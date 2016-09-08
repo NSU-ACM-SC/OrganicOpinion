@@ -21,7 +21,7 @@ def load_posts(id_, graph, count=1):
         else:
             group_posts = get_next(group_posts)
         for post in group_posts.get('data'):
-            posts.append(post.get('message'))
+            posts.append(post)
     return posts
 
 
@@ -30,9 +30,9 @@ def load_comments(id_, graph, count=1):
     for page in xrange(count):
         if page == 0:
             post_comments = graph.get_connections(id=id_,
-                                                  connection_name='comment')
+                                                  connection_name='comments')
         else:
             post_comments = get_next(post_comments)
         for post in post_comments.get('data'):
-            comments.append(post.get('message'))
+            comments.append(post)
     return comments
