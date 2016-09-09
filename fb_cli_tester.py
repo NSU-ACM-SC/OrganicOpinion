@@ -19,10 +19,14 @@ def main():
     graph = facebook.GraphAPI(access_token=args.access_token, version='2.7')
     posts = load_posts(NSU_CSE, graph, 1)
     comments = []
+
     for post in posts:
         for comment in load_comments(post.get('id'), graph):
             comments.append(comment.get('message'))
-    save_socialdata_as_list(social_data=comments, fieldname='comment', filepath='test.csv')
+
+    save_socialdata_as_list(social_data=comments,
+                            fieldname='comment',
+                            filepath='test.csv')
 
 if __name__ == '__main__':
     main()
